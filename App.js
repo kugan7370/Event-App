@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, View, Button, Modal, TextInput,Platform } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, Button, Modal, TextInput,Platform, TouchableOpacity } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
@@ -74,19 +74,52 @@ export default function App() {
     hideEndTimePicker();
   };
 
+
+  const removeEvent = (eventId) => {
+    const allEvents = Object.values(eventsData).flat(); 
+    const eventIndex = allEvents.findIndex((event) => event.id === eventId);
+
+    if (eventIndex !== -1) {
+      const { [selectedDate]: remainingEvents, ...updatedEventsData } = eventsData;
+      const updatedEventsForDate = remainingEvents.filter((event, index) => index !== eventIndex);
+      setEventsData({ ...updatedEventsData, [selectedDate]: updatedEventsForDate });
+
+     
+      if (!updatedEventsForDate.length) {
+        clearDate(selectedDate); 
+      }
+    } else {
+      console.warn("Event with ID", eventId, "not found to remove.");
+    }
+  };
+
+
+  const clearDate = (dateString) => {
+    const { [dateString]: _, ...updatedEventsData } = eventsData; 
+    setEventsData(updatedEventsData);
+  };
+  
+  
   return (
     <SafeAreaView style={styles.container}>
-      <Agenda
-        items={eventsData} // Pass event data to Agenda component
-        onDayPress={(day) => openModal(day.dateString)}
-        renderItem={(item) => (
-          <View style={styles.event}>
-            <Text style={styles.eventTitle}>{item.title}</Text>
-            <Text style={styles.eventTime}>{`Time: ${item.startTime} - ${item.endTime}`}</Text>
-            {item.note && <Text>{`Note: ${item.note}`}</Text>}
-          </View>
-        )}
-      />
+     <Agenda
+  items={eventsData} 
+  selected={new Date()}
+  onDayPress={(day) => openModal(day.dateString)}
+  renderItem={(item, firstItemInDay) => (
+    <TouchableOpacity onLongPress={() => removeEvent(item.id)}>
+    <View style={styles.event}>
+      <Text style={styles.eventTitle}>{item.title}</Text>
+      <Text style={styles.eventTime}>{`Time: ${item.startTime} - ${item.endTime}`}</Text>
+      {item.note && <Text>{`Note: ${item.note}`}</Text>}
+    </View>
+    </TouchableOpacity>
+   
+  )}
+ 
+
+/>
+
       <Modal
         animationType="slide"
         transparent={true}
