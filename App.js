@@ -19,15 +19,15 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function App() {
 
-  // let [fontsLoaded] = useFonts({
-  //   Poppins_500Medium,
-  //   Poppins_700Bold,
-  //   Poppins_600SemiBold,
+  let [fontsLoaded] = useFonts({
+    Poppins_500Medium,
+    Poppins_700Bold,
+    Poppins_600SemiBold,
 
-  // });
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
+  });
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <NavigationContainer>
