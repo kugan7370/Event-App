@@ -16,7 +16,10 @@
     "react-native": "0.73.6",
     "react-native-calendars": "^1.1304.1",
     "react-native-modal-datetime-picker": "^17.1.0",
-    "react-native-push-notification": "^8.1.1"
+    "react-native-push-notification": "^8.1.1",
+    "expo-notifications": "~0.27.7",
+    "expo-device": "~5.9.4",
+    "expo-constants": "~15.4.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
