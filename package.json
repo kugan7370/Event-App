@@ -10,16 +10,24 @@
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "^8.0.0",
+    "@react-native-masked-view/masked-view": "0.3.0",
+    "@react-navigation/bottom-tabs": "^6.5.20",
+    "@react-navigation/stack": "^6.3.29",
     "expo": "~50.0.17",
+    "expo-constants": "~15.4.6",
+    "expo-device": "~5.9.4",
+    "expo-font": "^11.10.3",
+    "expo-notifications": "~0.27.7",
     "expo-status-bar": "~1.11.1",
     "react": "18.2.0",
     "react-native": "0.73.6",
     "react-native-calendars": "^1.1304.1",
+    "react-native-gesture-handler": "~2.14.0",
     "react-native-modal-datetime-picker": "^17.1.0",
+    "react-native-onboarding-swiper": "^1.2.0",
     "react-native-push-notification": "^8.1.1",
-    "expo-notifications": "~0.27.7",
-    "expo-device": "~5.9.4",
-    "expo-constants": "~15.4.6"
+    "react-native-responsive-fontsize": "^0.5.1",
+    "react-native-responsive-screen": "^1.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
